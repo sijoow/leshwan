@@ -1,15 +1,13 @@
 const express = require('express');
 const MongoClient = require('mongodb').MongoClient;
 const cors = require('cors');
+const path = require('path'); // path 모듈 추가
 const app = express();
 const PORT = 443;
 app.use(cors());
 app.use(express.json());
-app.get('/', (req, res) => {
-    // HTML 코드를 직접 응답으로 전송
-    res.send('<html><body><h1>Hello, World!</h1></body></html>');
-  });
-  
+app.use(express.static(path.join(__dirname, 'public'))); // public 폴더를 정적 파일 제공 경로로 설정합니다.
+
 let db;
 
 MongoClient.connect('mongodb+srv://yogibo:yogibo@cluster0.vvkyawf.mongodb.net/?retryWrites=true&w=majority', function(err, client) {
