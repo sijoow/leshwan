@@ -5,7 +5,11 @@ const app = express();
 const PORT = 443;
 app.use(cors());
 app.use(express.json());
-
+app.get('/', (req, res) => {
+    // HTML 코드를 직접 응답으로 전송
+    res.send('<html><body><h1>Hello, World!</h1></body></html>');
+  });
+  
 let db;
 
 MongoClient.connect('mongodb+srv://yogibo:yogibo@cluster0.vvkyawf.mongodb.net/?retryWrites=true&w=majority', function(err, client) {
